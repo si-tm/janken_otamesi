@@ -1,36 +1,32 @@
 import sys
 import webbrowser
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
 
-def open_janken():
-    url = "https://s-shinomoto.com/janken/japanese.html"
-    webbrowser.open(url, 1)
-
-def sousa_test():
-    driver = webdriver.Chrome()
-    driver.get('https://www.insource.co.jp/bup/middle-schedule.html')
-    form = driver.find_element_by_xpath('//*[@id="search"]/input[1]')
-    form.send_keys('Python')
-    form.submit()
-    driver.close()
-
-#   <div class="buttons">
-#     <input class="rock" type="image" value="グー" onclick="RPS(1)" src="r.jpg" />
-#     <input class="scissors" type="image" value="チョキ" onclick="RPS(2)" src="s.jpg" />
-#     <input class="paper" type="image" value="パー" onclick="RPS(3)" src="p.jpg" />
-#   </div>
+# selenium                     3.141.0
 
 def sousa_janken():
     driver = webdriver.Chrome()
     driver.get('https://s-shinomoto.com/janken/japanese.html')
-    value = element.get_attribute('value')
-    print(value)
-    # driver.find_element_by_name('s_image').click()
-    # driver.close()
+    elemr = driver.find_element_by_class_name("rock")
+    elems = driver.find_element_by_class_name("scissors")
+    elemp = driver.find_element_by_class_name("paper")  
+
+    while True:
+        choice = input()
+        if choice == 'r':
+            elemr.click()
+        elif choice == 's':
+            elems.click()
+        elif choice == 'p':
+            elemp.click()
+        else:
+            exit()
+
+    driver.close()
 
 def main():
-    # open_janken()
-    # sousa_test()
     sousa_janken()
 
 if __name__ == "__main__":
